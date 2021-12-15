@@ -4,11 +4,10 @@ streamlit
 opencv-python
 pip
 numpy
-sklearn.preprocessing
+sklearn
 tensorflow
 keras
 tensorflow_hub
-matplotlib.pyplot
+matplotlib
 IPython.display  
-sklearn.model_selection
 PIL.Image
