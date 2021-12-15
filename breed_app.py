@@ -4,40 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import os
-import cv2
-import pickle
-import datetime
-import warnings
-warnings.filterwarnings('ignore')
-import itertools
-import numpy as np
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.optimizers import RMSprop
-from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D, Input
-from keras.layers import Dropout, Flatten, Dense
-from keras.models import Sequential
-import tensorflow_hub as hub
-import matplotlib.pyplot as plt
-from IPython.display import display, Image  
-from sklearn.model_selection import train_test_split
-import datetime
-from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
-from matplotlib import pyplot
-import tensorflow_hub as hub
-from IPython.display import Image
-from matplotlib.pyplot import imread
-from sklearn.model_selection import train_test_split
-import PIL.Image
-from tensorflow.keras.applications.resnet_v2 import ResNet50V2, preprocess_input
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout, BatchNormalization
-from tensorflow.keras.models import load_model, Model
-from google.colab import drive
-from google.colab.patches import cv2_imshow
+
 
 REPO_DIR = 'https://github.com/willjobs/dog-classifier/raw/main'
 MODEL_FILE = '-20-breeds.h5'
