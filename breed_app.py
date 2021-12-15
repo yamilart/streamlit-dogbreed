@@ -80,6 +80,7 @@ def get_model():
     return learn
 
 learn = get_model()
+
 if file_data is not None:
     with st.spinner('Classifying...'):
         # load the image from uploader; fix rotation for iOS devices if necessary
