@@ -3,7 +3,6 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
-import os, cv2
 import numpy as np
 
 
