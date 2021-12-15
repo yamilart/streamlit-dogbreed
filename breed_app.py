@@ -71,7 +71,7 @@ def fix_rotation(file_data):
 
 
 # cache the model so it only gets loaded once
-@st.experimental_memo(allow_output_mutation=True)
+@st.experimental_memo
 def get_model():
     if not os.path.isfile(MODEL_FILE):
         _ = download_file(f'{REPO_DIR}/models/{MODEL_FILE}')
