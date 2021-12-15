@@ -1,7 +1,6 @@
 altair
 pandas
 streamlit
-os
 cv2
 warnings
 itertools
