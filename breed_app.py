@@ -9,6 +9,7 @@ import numpy as np
 REPO_DIR = 'https://github.com/willjobs/dog-classifier/raw/main'
 MODEL_FILE = '-20-breeds.h5'
 
+@st.experimental_memo
 def load_model(model_path):
   model = tf.keras.models.load_model(model_path, custom_objects={"KerasLayer":hub.KerasLayer})
   return model
@@ -23,7 +24,7 @@ st.markdown("A dog breed detection project")
 
 file_data = st.file_uploader("Select an image", type=["jpg"])
 
-
+@st.experimental_memo
 def download_file(url):
     with st.spinner('Downloading model...'):
         # from https://stackoverflow.com/a/16696317
@@ -38,7 +39,7 @@ def download_file(url):
                     #if chunk: 
                     f.write(chunk)
         return local_filename
-
+@st.experimental_memo
 def fix_rotation(file_data):
     # check EXIF data to see if has rotation data from iOS. If so, fix it.
     try:
@@ -70,7 +71,7 @@ def fix_rotation(file_data):
 
 
 # cache the model so it only gets loaded once
-@st.cache(allow_output_mutation=True)
+@st.experimental_memo(allow_output_mutation=True)
 def get_model():
     if not os.path.isfile(MODEL_FILE):
         _ = download_file(f'{REPO_DIR}/models/{MODEL_FILE}')
@@ -79,7 +80,7 @@ def get_model():
     return learn
 
 learn = get_model()
-
+@st.experimental_memo
 if file_data is not None:
     with st.spinner('Classifying...'):
         # load the image from uploader; fix rotation for iOS devices if necessary
