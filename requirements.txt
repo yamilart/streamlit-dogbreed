@@ -1,3 +1,16 @@
 altair
 pandas
 streamlit
+os
+cv2
+warnings
+itertools
+numpy
+sklearn.preprocessing
+tensorflow
+keras
+tensorflow_hub
+matplotlib.pyplot
+IPython.display  
+sklearn.model_selection
+PIL.Image
