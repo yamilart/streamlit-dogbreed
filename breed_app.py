@@ -4,6 +4,8 @@ import math
 import pandas as pd
 import streamlit as st
 import os
+import cv2
+import numpy as np
 
 
 REPO_DIR = 'https://github.com/willjobs/dog-classifier/raw/main'
@@ -97,7 +99,7 @@ if file_data is not None:
         model = load_model(MODEL_FILE)
  
         #get the image of the dog for prediction
-        dog_img_array = cv2.resize(cv2.imread(file_data,cv2.IMREAD_COLOR),((224,224)))
+        dog_img_array = cv2.resize(cv2.imread(img,cv2.IMREAD_COLOR),((224,224)))
         #scale array into the range of -1 to 1.
         #expand the dimension on the axis 0 and normalize the array values
         dog_img_array = preprocess_input(np.expand_dims(np.array(dog_img_array[...,::-1].astype(np.float32)).copy(), axis=0))
@@ -107,7 +109,7 @@ if file_data is not None:
  
         #display the image of dog
         #cv2.imshow(cv2.resize(cv2.imread(dog_img_path,cv2.IMREAD_COLOR),((224,224)))) 
-        Image(cv2.resize(cv2.imread(file_data,cv2.IMREAD_COLOR),((224,224)))) 
+        Image(cv2.resize(cv2.imread(img,cv2.IMREAD_COLOR),((224,224)))) 
  
         #display the predicted breed of dog
         pred_breed = sorted(somedogs['breed'])[np.argmax(pred_val)]
