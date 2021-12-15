@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon="🐾"
 )
 
-st.write("#Who let the dogs out?")
+st.title("#Who let the dogs out?")
 st.markdown("A dog breed detection project")
 
 st.write("This project classifies dog photos using a CNN fine-tuned from ResNet-50 in fastai.")
