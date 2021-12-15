@@ -16,27 +16,8 @@ st.set_page_config(
     page_icon="🐾"
 )
 
-st.title("#Who let the dogs out?")
+st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
-
-st.write("This project classifies dog photos using a CNN fine-tuned from ResNet-50 in fastai.")
-with st.beta_expander("🧙 Click here for more info about the model 🔮"):
-    st.markdown("""
-        <p>This project used transfer learning to build a CNN pre-trained on ImageNet, using
-        a ResNet-50 architecture. The implementation was done using fastai (v2) and PyTorch. 
-        The training dataset was based on the <a href="https://www.akc.org/dog-breeds/" target="_blank">AKC-recognized dog breeds</a>, 
-        with approximately 150 images per dog breed taken from the internet. (An earlier iteration of 
-        this project used the <a href="http://vision.stanford.edu/aditya86/ImageNetDogs/" target="_blank">Stanford dogs dataset</a>, 
-        but I found that the images in that dataset were not representative of images "in the wild", as the 
-        same model trained on those images gave unrealistically high accuracies but did not generalize well.)</p>
-        <p>10% of the data were set aside for the test set (holdout set), and 20% of the data
-        were used for the validation set. Images were resized to 128x128 pixel squares before
-        training using random-resize cropping.</p>
-        <p>The final model was trained for a total of 8 epochs: 3 with the ResNet layers frozen,
-        training only the new classification head, and 5 additional epochs with all layers unfrozen.
-        The final <b>validation set accuracy was 76.3%</b>, and the <b>test set/holdout accuracy was 75.4%</b>.</p>
-        <p>The code used to train the model is available at <a href="https://github.com/willjobs/dog-classifier" target="_blank">https://github.com/willjobs/dog-classifier</a>.</p>
-    """, unsafe_allow_html=True)
 
 file_data = st.file_uploader("Select an image", type=["jpg"])
 
