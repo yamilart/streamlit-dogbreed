@@ -1,7 +1,7 @@
 altair
 pandas
 streamlit
-cv2
+opencv-python
 warnings
 itertools
 numpy
