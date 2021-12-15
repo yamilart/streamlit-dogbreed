@@ -9,4 +9,3 @@ tensorflow
 keras
 tensorflow_hub
 matplotlib
-PIL.Image
