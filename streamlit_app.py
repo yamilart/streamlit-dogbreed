@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 REPO_DIR = 'https://github.com/willjobs/dog-classifier/raw/main'
-MODEL_FILE = '20-breeds.h5'
+MODEL_FILE = '-20-breeds.h5'
 
 def load_model(model_path):
   model = tf.keras.models.load_model(model_path, custom_objects={"KerasLayer":hub.KerasLayer})
