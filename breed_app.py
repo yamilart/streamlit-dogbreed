@@ -38,7 +38,7 @@ dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
 
 if dog_image:
     if dog_image is not None:
-        def breed_predictor():
+        def breed_predictor(dog_image):
             dogimg = Image.open(dog_image).resize(size=(224, 224))
             st.image(dog_image, width = 300)
             st.write("")
