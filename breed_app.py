@@ -26,7 +26,7 @@ st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
 st.markdown('Upload img')
 
-dog_image = st.file_uploader('Upload an image...', type=['png'])
+dog_image = st.file_uploader('Upload an image...', type=['jpg'])
 submit = st.button('Predict')
 
 if submit:
