@@ -10,8 +10,8 @@ from keras.models import load_model
 from keras.preprocessing import image
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
-from keras.applications.vgg16 import preprocess_input
-from keras.applications.vgg16 import decode_predictions
+#from keras.applications.vgg16 import preprocess_input
+#from keras.applications.vgg16 import decode_predictions
 from PIL import Image
 from io import BytesIO
 from scipy import ndimage, misc
@@ -42,7 +42,7 @@ if dog_image:
         st.write("")
         st.write("Classifying...")
         dogimg = dog_image.read()
-        dogimg = image.img_to_array(dogimg)
+        dogimg = np.array(dogimg)
         result_prob = model.predict(dogimg)
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
