@@ -49,7 +49,7 @@ if dog_image:
         #result = result_prob.argmax(axis=-1)
         #le = preprocessing.LabelEncoder()
         #result = le.fit_transform(result)
-        file_bytes = np.asarray(dog_image.read(), dtype=np.uint8)
+        file_bytes = np.asarray(dog_image.read(), dtype=np.uint32)
         opencv_image = cv2.imdecode(file_bytes, 1)
 
         st.image(opencv_image, channels='BGR')
