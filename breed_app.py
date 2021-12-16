@@ -25,11 +25,11 @@ st.set_page_config(
 
 model = load_model('-20-breeds.h5')
 
-breedselection = ['dachshund', 'golden_retriever', 'chow', 'siberian_husky', 
-                                                'great_dane', 'french_bulldog', 'rottweiler', 'cocker_spaniel', 
-                                                'pekinese', 'doberman', 'boxer', 'labrador_retriever', 
-                                                'samoyed', 'beagle', 'chihuahua', 'toy_terrier', 
-                                                'weimaraner', 'collie', 'bloodhound', 'yorkshire_terrier']
+breedselection = ['Cocker Spaniel', 'golden_retriever', 'chow', 'siberian_husky', 
+                                                'great_dane', 'french_bulldog', 'rottweiler', 'Dachshund', 
+                                                'pekinese', 'doberman', 'boxer', 'Weimaraner', 
+                                                'Toy Terrier', 'beagle', 'chihuahua', 'Samoyed', 
+                                                'Labrador Retriever', 'collie', 'bloodhound', 'yorkshire_terrier']
 
 st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
