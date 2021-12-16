@@ -50,4 +50,4 @@ if dog_image:
         le = preprocessing.LabelEncoder()
         result = le.inverse_transform(result)
         print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
-        st.write("I'm ", str(float(round(np.amax(result_prob)*100,2))), "% sure this cute dog is a ", breedselection[np.argmax(result_prob))
+        st.write("I'm ", str(float(round(np.amax(result_prob)*100,2))), "% sure this cute dog is a ", breedselection[np.argmax(result_prob)])
