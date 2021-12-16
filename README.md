@@ -1,6 +1,5 @@
-# Welcome to Streamlit!
+# Welcome to the Dog Breed App!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+This repo is for the App developed for my Final Bootcamp Project at Ironhack Barcelona
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+Find more info [here](https://github.com/yamilart/DataLabs/tree/main/Final%20Project) 🐾
