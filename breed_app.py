@@ -42,7 +42,7 @@ if dog_image:
         st.write("")
         st.write("Classifying...")
         dogimg = dog_image.read()
-        dogimg = image.reshape(1,224,224,3)
+        dogimg = image.img_to_array(dogimg)
         result_prob = model.predict(dogimg)
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
