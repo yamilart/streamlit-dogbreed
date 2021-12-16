@@ -32,7 +32,7 @@ submit = st.button('Guess the breed')
 if dog_image:
     dogimg = dog_image
     st.write('## Your Image')
-    st.image(img, width=200)
+    st.image(dogimg, width=200)
     if dog_image is not None:
         
         img = cv2.imread(dogimg, target_size =(224, 224))
