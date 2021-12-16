@@ -34,12 +34,9 @@ st.markdown("A dog breed detection project")
 dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
 
 if dog_image:
-    dogimg = dog_image
-    st.write('## Your Image')
-    st.image(dogimg, width=200)
     if dog_image is not None:
         dogimg = Image.open(dog_image)
-        st.image(dog_image)
+        st.image(dog_image, width = 300)
         st.write("")
         st.write("Classifying...")
         img = image.load_img(dogimg, target_size =(224, 224))
