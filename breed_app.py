@@ -24,10 +24,9 @@ breedselection = ['dachshund', 'golden_retriever', 'chow', 'siberian_husky',
 
 st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
-st.markdown('Upload img')
 
-dog_image = st.file_uploader('Upload an image...', type=['jpg'])
-submit = st.button('Predict')
+dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
+submit = st.button('Guess the breed')
 
 if submit:
     if dog_image is not None:
