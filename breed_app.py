@@ -39,7 +39,7 @@ if dog_image:
         st.image(dog_image, width = 300)
         st.write("")
         st.write("Classifying...")
-        doggieimg = upload.read(dog_image)
+        doggieimg = dog_image.read()
         img = image.load_img(doggieimg, target_size =(224, 224))
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
