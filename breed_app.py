@@ -33,14 +33,13 @@ if submit:
     st.write('## Your Image')
     st.image(img, width=200
     if dog_image is not None:
-        
              
-        image = cv2.imread(dog_image)
-        image = cv2.resize(image, (224, 224))
+            image = cv2.imread(dog_image)
+            image = cv2.resize(image, (224, 224))
     # dog_img = Image.open(dog_image)
-        image = image.reshape(1,224,224,3)
-        result_prob = model.predict(image)
-        result = result_prob.argmax(axis=-1)
-        result = labenc.inverse_transform(result)    
+            image = image.reshape(1,224,224,3)
+            result_prob = model.predict(image)
+            result = result_prob.argmax(axis=-1)
+            result = labenc.inverse_transform(result)    
 
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
