@@ -51,5 +51,5 @@ if dog_image:
             le = preprocessing.LabelEncoder()
             result = le.fit_transform(result)
             return print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
-breed_predictor(dog_image)
-st.title(breed_predictor(dog_image))
+        breed_predictor(dog_image)
+        st.title(breed_predictor(dog_image))
