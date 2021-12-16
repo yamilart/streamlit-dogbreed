@@ -53,3 +53,4 @@ if dog_image:
             return print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
             st.write("I'm ", str(float(round(np.amax(result_prob)*100,2))), "% sure this cute dog is a ", result[0])
         breed_predictor(dog_image)
+        st.write("I'm ", str(float(round(np.amax(result_prob)*100,2))), "% sure this cute dog is a ", result[0])
