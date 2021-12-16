@@ -42,5 +42,3 @@ if dog_image:
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
-else:
-    st.write("You haven't uploaded a picture!")
