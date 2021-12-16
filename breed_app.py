@@ -29,19 +29,18 @@ dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
 submit = st.button('Guess the breed')
 
 if submit:
+    img = dog_image
+    st.write('## Your Image')
+    st.image(img, width=200
     if dog_image is not None:
-        img = dog_image
-        st.write('## Your Image')
-        st.image(img, width=200)
         
-        file_bytes = np.asarray(dog_image.read(), dtype=np.uint8)
-        opencv_image = cv2.imdecode(file_bytes, 1)
+             
+        image = cv2.imread(dog_image)
+        image = cv2.resize(image, (224, 224))
+    # dog_img = Image.open(dog_image)
+        image = image.reshape(1,224,224,3)
+        result_prob = model.predict(image)
+        result = result_prob.argmax(axis=-1)
+        result = labenc.inverse_transform(result)    
 
-        st.image(opencv_image, channels='BGR')
-        opencv_image = cv2.resize(opencv_image, (224, 224))
-
-        opencv_image.shape = (1, 224, 224, 3)
-
-        Y_pred = model.predict(opencv_image)
-
-        st.title('Prediction', breedselection[np.argmax(Y_pred)])
+        st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
