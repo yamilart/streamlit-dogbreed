@@ -49,5 +49,5 @@ if dog_image:
         result = result_prob.argmax(axis=-1)
         le = preprocessing.LabelEncoder()
         result = le.fit_transform(result)
-        return print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
+        print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
         st.write("I'm ", str(float(round(np.amax(result_prob)*100,2))), "% sure this cute dog is a ", result[0])
