@@ -42,7 +42,7 @@ if dog_image:
         st.image(dog_image, width = 300)
         st.write("")
         st.write("Classifying...")
-        dogimg = dog_image.read()
+        #dogimg = dog_image.read()
         image1 = np.array(dogimg, dtype=np.float32)
         image = image1.reshape(1,224,224,3)
         result_prob = model.predict(image)
