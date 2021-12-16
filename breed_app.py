@@ -6,6 +6,7 @@ import streamlit as st
 import numpy as np
 import os
 import requests
+from keras.models import load_model
 
 
 REPO_DIR = 'https://github.com/willjobs/dog-classifier/raw/main'
@@ -21,102 +22,34 @@ st.set_page_config(
     page_icon="🐾"
 )
 
+file_data = st.file_uploader("Select an image", type=["jpg"])
+-
+
+model = load_model('dog_breed.h5')
+
+breedselection = ['dachshund', 'golden_retriever', 'chow', 'siberian_husky', 
+                                                'great_dane', 'french_bulldog', 'rottweiler', 'cocker_spaniel', 
+                                                'pekinese', 'doberman', 'boxer', 'labrador_retriever', 
+                                                'samoyed', 'beagle', 'chihuahua', 'toy_terrier', 
+                                                'weimaraner', 'collie', 'bloodhound', 'yorkshire_terrier']
+
 st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
+st.markdown('Upload img')
 
-file_data = st.file_uploader("Select an image", type=["jpg"])
+dog_image = st.file_uploader('Upload an image...', type=['png'])
+submit = st.button('Predict')
 
-@st.experimental_memo
-def download_file(url):
-    with st.spinner('Downloading model...'):
-        # from https://stackoverflow.com/a/16696317
-        local_filename = url.split('/')[-1]
-        # NOTE the stream=True parameter below
-        with requests.get(url, stream=True) as r:
-            r.raise_for_status()
-            with open(local_filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192): 
-                    # If you have chunk encoded response uncomment if
-                    # and set chunk_size parameter to None.
-                    #if chunk: 
-                    f.write(chunk)
-        return local_filename
-@st.experimental_memo
-def fix_rotation(file_data):
-    # check EXIF data to see if has rotation data from iOS. If so, fix it.
-    try:
-        image = PILImage.create(file_data)
-        for orientation in ExifTags.TAGS.keys():
-            if ExifTags.TAGS[orientation]=='Orientation':
-                break
+if submit:
+    if dog_image is not None:
+        file_bytes = np.asarray(dog_image.read(), dtype=np.uint8)
+        opencv_image = cv2.imdecode(file_bytes, 1)
 
-        exif = dict(image.getexif().items())
+        st.image(opencv_image, channels='BGR')
+        opencv_image = cv2.resize(opencv_image, (224, 224))
 
-        rot = 0
-        if exif[orientation] == 3:
-            rot = 180
-        elif exif[orientation] == 6:
-            rot = 270
-        elif exif[orientation] == 8:
-            rot = 90
+        opencv_image.shape = (1, 224, 224, 3)
 
-        if rot != 0:
-            st.write(f"Rotating image {rot} degrees (you're probably on iOS)...")
-            image = image.rotate(rot, expand=True)
-            # This step is necessary because image.rotate returns a PIL.Image, not PILImage, the fastai derived class.
-            image.__class__ = PILImage
+        Y_pred = model.predict(opencv_image)
 
-    except (AttributeError, KeyError, IndexError):
-        pass  # image didn't have EXIF data
-
-    return image
-
-
-# cache the model so it only gets loaded once
-@st.experimental_memo
-def get_model():
-    if not os.path.isfile(MODEL_FILE):
-        _ = download_file(f'{REPO_DIR}/models/{MODEL_FILE}')
-
-    learn = load_learner(MODEL_FILE)
-    return learn
-
-learn = get_model()
-
-if file_data is not None:
-    with st.spinner('Classifying...'):
-        # load the image from uploader; fix rotation for iOS devices if necessary
-        img = fix_rotation(file_data)
-        
-        st.write('## Your Image')
-        st.image(img, width=200)
-
-        # classify
-        pred, pred_idx, probs = learn.predict(img)
-        top5_preds = sorted(list(zip(learn.dls.vocab, list(probs.numpy()))), key=lambda x: x[1], reverse=True)[:5]
-
-        # prepare output
-        
-        model = load_model(MODEL_FILE)
- 
-        #get the image of the dog for prediction
-        dog_img_array = cv2.resize(cv2.imread(img,cv2.IMREAD_COLOR),((224,224)))
-        #scale array into the range of -1 to 1.
-        #expand the dimension on the axis 0 and normalize the array values
-        dog_img_array = preprocess_input(np.expand_dims(np.array(dog_img_array[...,::-1].astype(np.float32)).copy(), axis=0))
- 
-        #feed the model with the image array for prediction
-        pred_val = model.predict(np.array(dog_img_array,dtype="float32"))
- 
-        #display the image of dog
-        #cv2.imshow(cv2.resize(cv2.imread(dog_img_path,cv2.IMREAD_COLOR),((224,224)))) 
-        Image(cv2.resize(cv2.imread(img,cv2.IMREAD_COLOR),((224,224)))) 
- 
-        #display the predicted breed of dog
-        pred_breed = sorted(somedogs['breed'])[np.argmax(pred_val)]
-
-        st.write('## This cutie is a ')
-        st.markdown(pred_breed, unsafe_allow_html=True)
-
-        st.write(f"🤔 Don't see your dog breed? For a full list of dog breeds in this project, [click here](https://htmlpreview.github.io/?https://github.com/willjobs/dog-classifier/blob/main/dog_breeds.html).")
-
+        st.title('Prediction', breedselection[np.argmax(Y_pred)])
