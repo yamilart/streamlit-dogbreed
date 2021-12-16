@@ -30,6 +30,10 @@ submit = st.button('Guess the breed')
 
 if submit:
     if dog_image is not None:
+        img = dog_image
+        st.write('## Your Image')
+        st.image(img, width=200)
+        
         file_bytes = np.asarray(dog_image.read(), dtype=np.uint8)
         opencv_image = cv2.imdecode(file_bytes, 1)
 
