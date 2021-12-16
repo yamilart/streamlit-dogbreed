@@ -42,7 +42,7 @@ if dog_image:
         st.write("")
         st.write("Classifying...")
         dogimg = dog_image.read()
-        x = image.img_to_array(img)
+        x = image.img_to_array(dogimg)
         x = np.expand_dims(x, axis=0)
         x = preprocess_input(x)
         result_prob = model.predict(x)
