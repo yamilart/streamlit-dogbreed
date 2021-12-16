@@ -48,5 +48,5 @@ if dog_image:
         result_prob = model.predict(image)
         result = result_prob.argmax(axis=-1)
         le = preprocessing.LabelEncoder()
-        result = le.inverse_transform(result)
+        result = le.fit_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
