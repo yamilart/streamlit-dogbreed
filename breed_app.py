@@ -25,8 +25,8 @@ st.set_page_config(
 
 model = load_model('-20-breeds.h5')
 
-breedselection = ['Cocker Spaniel', 'golden_retriever', 'chow', 'siberian_husky', 
-                                                'great_dane', 'french_bulldog', 'rottweiler', 'Dachshund', 
+breedselection = ['Cocker Spaniel', 'golden_retriever', 'Great Dane', 'siberian_husky', 
+                                                'Chow', 'french_bulldog', 'rottweiler', 'Dachshund', 
                                                 'pekinese', 'doberman', 'boxer', 'Weimaraner', 
                                                 'Toy Terrier', 'beagle', 'chihuahua', 'Samoyed', 
                                                 'Labrador Retriever', 'collie', 'bloodhound', 'yorkshire_terrier']
