@@ -52,5 +52,5 @@ if dog_image:
             result = le.fit_transform(result)
             return print("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
  
-st.title(breed_predictor())
+breed_predictor()
         #st.title("I'm ", str(float(round(np.amax(result_prob)*100,2))), '% sure this cute dog is a ', result[0])
