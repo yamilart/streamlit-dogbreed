@@ -6,6 +6,7 @@ import streamlit as st
 import numpy as np
 import os
 import requests
+from sklearn import preprocessing
 from keras.models import load_model
 from keras.preprocessing import image
 from keras.preprocessing.image import load_img
@@ -46,5 +47,5 @@ if dog_image:
         image = image1.reshape(1,224,224,3)
         result_prob = model.predict(image)
         result = result_prob.argmax(axis=-1)
-        result = LabelEncoder().inverse_transform(result)
+        result = preprocessing.LabelEncoder().inverse_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
