@@ -7,6 +7,7 @@ import numpy as np
 import os
 import requests
 from keras.models import load_model
+from keras.preprocessing import image
 
 
 st.set_page_config(
@@ -28,16 +29,17 @@ st.markdown("A dog breed detection project")
 dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
 submit = st.button('Guess the breed')
 
-if submit:
-    img = dog_image
+if dog_image:
+    dogimg = dog_image
     st.write('## Your Image')
     st.image(img, width=200)
     if dog_image is not None:
         
-        image = cv2.imread(dog_image)
-        image = cv2.resize(image, (224, 224))
-        image = image.reshape(1,224,224,3)
-        result_prob = model.predict(image)
+        img = cv2.imread(dogimg, target_size =(224, 224))
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        x = preprocess_input(x)
+        result_prob = model.predict(x)
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
