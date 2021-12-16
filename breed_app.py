@@ -13,7 +13,6 @@ st.set_page_config(
     page_title="Who let the dogs out?",
     page_icon="🐾"
 )
-#hey
 
 model = load_model('-20-breeds.h5')
 
