@@ -39,7 +39,7 @@ if dog_image:
     st.image(dogimg, width=200)
     if dog_image is not None:
         dogimg = Image.open(dog_image)
-        st.image(image)
+        st.image(dog_image)
         st.write("")
         st.write("Classifying...")
         img = image.load_img(dogimg, target_size =(224, 224))
@@ -50,8 +50,3 @@ if dog_image:
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
-        
-    image = Image.open(dog_image)
-    st.image(image)
-    st.write("")
-    st.write("Classifying...")
