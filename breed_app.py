@@ -8,6 +8,10 @@ import os
 import requests
 from keras.models import load_model
 from keras.preprocessing import image
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+from keras.applications.vgg16 import preprocess_input
+from keras.applications.vgg16 import decode_predictions
 
 
 st.set_page_config(
@@ -33,7 +37,10 @@ if dog_image:
     st.write('## Your Image')
     st.image(dogimg, width=200)
     if dog_image is not None:
-        
+        dogimg = Image.open(dog_image)
+        st.image(image)
+        st.write("")
+        st.write("Classifying...")
         img = image.load_img(dogimg, target_size =(224, 224))
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
@@ -42,3 +49,8 @@ if dog_image:
         result = result_prob.argmax(axis=-1)
         result = labenc.inverse_transform(result)
         st.title("I'm " + str(float(round(np.amax(result_prob)*100,2))) + '% sure this cute dog is a ' + result[0])
+        
+    image = Image.open(dog_image)
+    st.image(image)
+    st.write("")
+    st.write("Classifying...")
