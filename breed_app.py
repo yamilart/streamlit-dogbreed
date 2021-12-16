@@ -13,6 +13,8 @@ from keras.preprocessing.image import img_to_array
 from keras.applications.vgg16 import preprocess_input
 from keras.applications.vgg16 import decode_predictions
 from PIL import Image
+from io import BytesIO
+from scipy import ndimage, misc
 
 
 st.set_page_config(
@@ -40,7 +42,7 @@ if dog_image:
         st.write("")
         st.write("Classifying...")
         doggieimg = dog_image.read()
-        img = image.load_img(doggieimg, target_size =(224, 224))
+        img = misc.imresize(doggieimg, (224, 224))
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
         x = preprocess_input(x)
