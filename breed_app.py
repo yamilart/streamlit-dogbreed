@@ -27,7 +27,6 @@ st.title("Who let the dogs out?")
 st.markdown("A dog breed detection project")
 
 dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
-submit = st.button('Guess the breed')
 
 if dog_image:
     dogimg = dog_image
@@ -35,7 +34,7 @@ if dog_image:
     st.image(dogimg, width=200)
     if dog_image is not None:
         
-        img = cv2.imread(dogimg, target_size =(224, 224))
+        img = image.load_img(dogimg, target_size =(224, 224))
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
         x = preprocess_input(x)
