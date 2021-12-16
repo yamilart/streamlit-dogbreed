@@ -37,12 +37,11 @@ dog_image = st.file_uploader('Add a cute dog here! ⬇', type=['jpg'])
 
 if dog_image:
     if dog_image is not None:
-        dogimg = Image.open(dog_image)
+        dogimg = Image.open(dog_image).resize(size=(224, 224))
         st.image(dog_image, width = 300)
         st.write("")
         st.write("Classifying...")
-        doggieimg = dog_image.read()
-        img = misc.imresize(doggieimg, (224, 224))
+        dogimg = dog_image.read()
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
         x = preprocess_input(x)
